@@ -22,9 +22,23 @@ export default {
           orange: "#FF8A00",
           charcoal: "#1E1E1E",
           subtext: "#64748B"
+        },
+        editorial: {
+          bg: "#FAF9F5",
+          card: "#FFFFFF",
+          border: "#E8E6E1",
+          borderSubtle: "#F0EEEA",
+          ink: "#141414",
+          secondary: "#4A4844",
+          muted: "#7A7873",
+          subtle: "#F3F1EC",
+          accent: "#FD5D07",
+          accentHover: "#E54F03",
+          accentSubtle: "#FFF0E8"
         }
       },
       fontFamily: {
+        display: ['"Bebas Neue"', 'sans-serif'],
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace']
       },
