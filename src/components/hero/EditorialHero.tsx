@@ -4,7 +4,7 @@ import { PROFILE_DATA } from '../../data/profile';
 import { PROJECTS_DATA } from '../../data/projects';
 import { EXPERIENCE_DATA } from '../../data/experience';
 import { PLAYGROUND_DATA } from '../../data/playground';
-import { ArrowUpRight, ArrowDownRight, MapPin, Sparkles, MoveRight } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, MapPin, MoveRight } from 'lucide-react';
 import { EditorialLoader } from './EditorialLoader';
 
 interface EditorialHeroProps {
