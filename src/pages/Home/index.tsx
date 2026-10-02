@@ -16,29 +16,19 @@ export const HomePage: React.FC<HomeProps> = ({ onNavigate }) => {
 
   return (
     <PageTransition className="w-full">
-      {/* Outer Architectural Container matching reference */}
-      <div className="container mx-auto sm:border-x border-[#E8E6E1] bg-[#FAF9F5]">
-        {/* SPATIAL TWO-ZONE HERO: Identity Rail + Creative Canvas */}
-        <section className="flex flex-col lg:flex-row border-b border-[#E8E6E1]">
-          {/* Left Persistent Identity Rail */}
+      {/* HOME HERO COMPOSITION: Editorial Page Grid */}
+      <section className="w-full border-b border-[#E8E6E1] bg-[#FAF9F5] relative overflow-hidden">
+        <div className="w-full max-w-[1920px] mx-auto 2xl:pl-[90px] xl:pl-[50px] lg:pl-[30px] flex flex-col lg:flex-row items-stretch">
+          {/* 1. LEFT IDENTITY PANEL: 365px on desktop, right divider at x=455 */}
           <IdentityRail onNavigate={onNavigate} />
 
-          {/* Vertical Architectural Hatch Column Divider */}
-          <div className="hidden sm:inline-flex w-8 lg:w-9.5 shrink-0 border-r border-[#E8E6E1] overflow-hidden select-none">
-            <div className="w-full h-full opacity-20 editorial-hatch min-h-[500px]" />
-          </div>
+          {/* 2 & 3. MAIN CONTENT: CENTRAL SMALL CARD CLUSTER + GIANT TYPOGRAPHIC HERO */}
+          <SpatialHero onNavigate={onNavigate} />
+        </div>
+      </section>
 
-          {/* Right Creative Canvas Area */}
-          <div className="flex-1 relative overflow-hidden flex flex-col justify-between">
-            <SpatialHero onNavigate={onNavigate} />
-          </div>
-
-          {/* Right Architectural Boundary Hatch Column */}
-          <div className="hidden xl:inline-flex w-8 lg:w-9.5 shrink-0 border-l border-[#E8E6E1] overflow-hidden select-none">
-            <div className="w-full h-full opacity-20 editorial-hatch min-h-[500px]" />
-          </div>
-        </section>
-
+      {/* SUBSEQUENT SECTIONS (Inside standard page container) */}
+      <div className="container mx-auto sm:border-x border-[#E8E6E1] bg-[#FAF9F5]">
         {/* Featured Works Section */}
         <section id="featured-works" className="px-4 sm:px-8 lg:px-12 py-16 sm:py-24 border-b border-[#E8E6E1]">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-14">
