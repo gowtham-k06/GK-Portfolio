@@ -1,92 +1,171 @@
 import React from 'react';
 import { PROFILE_DATA } from '../../data/profile';
-import { ArrowUpRight, Mail } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate?: (route: string) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const handleBackToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <footer className="w-full mt-24 sm:mt-32 border-t border-[#E8E6E1] bg-[#FAF9F5]">
-      {/* Editorial Contact Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        {/* Top Status Pill */}
-        <div className="flex items-center gap-2 mb-8 sm:mb-12">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#FD5D07] animate-pulse" />
-          <span className="text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-[#141414]">
-            OPEN FOR WORK
-          </span>
-        </div>
+    <footer className="w-full bg-white pt-3">
+      {/* Main Footer Container */}
+      <section className="mx-[10px] overflow-hidden rounded-[38px] bg-[#0B0B0B] text-white">
+        <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-10 sm:py-20 lg:px-0 lg:py-[72px]">
 
-        {/* Big Editorial Statement */}
-        <div className="max-w-4xl mb-12 sm:mb-16">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#141414] leading-[1.2]">
-            Available for full-time product design roles, enterprise design systems, and complex interaction design.
-          </h2>
-          <p className="mt-5 text-base sm:text-lg text-[#7A7873] max-w-2xl leading-relaxed">
-            Have a project in mind or looking to strengthen your product design team? Let’s connect and talk through your vision.
-          </p>
-        </div>
+          {/* Availability Label */}
+          <div className="mb-12 flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-white sm:mb-14">
+            <span className="h-2 w-2 rounded-full bg-[#FD5D07]" />
+            <span>Open for work</span>
+          </div>
 
-        {/* Massive Editorial Display Text */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 border-b border-[#E8E6E1]">
-          <a
-            href={`mailto:${PROFILE_DATA.email}`}
-            className="group block select-none cursor-pointer"
-          >
-            <h3 className="font-display text-7xl sm:text-9xl md:text-[140px] lg:text-[180px] leading-[0.85] text-[#141414] group-hover:text-[#FD5D07] transition-colors duration-200 tracking-tight">
-              LET'S TALK.
-            </h3>
-          </a>
+          {/* Main Message */}
+          <div className="max-w-[760px]">
+            <p className="text-[28px] leading-[1.08] tracking-[-0.035em] text-white sm:text-[38px] lg:text-[42px]">
+              I'm currently available for full-time roles as well as
+              freelance or contract work. If you'd like to collaborate or
+              find time to chat, feel free to reach out by email.
+            </p>
+          </div>
 
-          {/* Quick Action CTA Card */}
-          <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
-            <a
-              href={`mailto:${PROFILE_DATA.email}?subject=Collaboration%20Inquiry`}
-              className="inline-flex items-center justify-between gap-4 px-6 py-4 rounded-full bg-[#141414] hover:bg-[#FD5D07] text-[#FAF9F5] text-xs font-mono uppercase tracking-wider transition-all duration-200 hover:scale-[1.02] shadow-sm"
+          {/* Let's Talk */}
+          <div className="mt-10 flex items-center justify-between border-b border-white/15 pb-10 sm:mt-12 sm:pb-12">
+            <button
+              type="button"
+              onClick={() => {
+                const email = PROFILE_DATA.email;
+                window.location.href = `mailto:${email}?subject=Project%20Inquiry`;
+              }}
+              className="group flex items-center gap-4 text-left"
             >
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                <span>{PROFILE_DATA.email}</span>
+              <span className="font-display text-[76px] font-bold uppercase leading-[0.82] tracking-[-0.06em] text-[#FD5D07] transition-transform duration-300 group-hover:translate-x-1 sm:text-[120px] lg:text-[150px]">
+                Let's Talk.
+              </span>
+
+              <span className="hidden text-[34px] text-[#FD5D07] transition-transform duration-300 group-hover:translate-x-2 sm:block lg:text-[42px]">
+                ↓
+              </span>
+            </button>
+          </div>
+
+          {/* Contact Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2">
+
+            {/* Email */}
+            <a
+              href={`mailto:${PROFILE_DATA.email}`}
+              className="group border-b border-white/15 py-7 sm:border-b-0 sm:border-r sm:pr-12"
+            >
+              <div className="mb-7 text-[18px] text-white">
+                [ @ ]
               </div>
-              <ArrowUpRight className="w-4 h-4" />
+
+              <span className="mb-4 block font-mono text-[9px] uppercase tracking-[0.14em] text-white/45">
+                Send a message
+              </span>
+
+              <span className="block text-[18px] tracking-[-0.02em] text-white transition-colors group-hover:text-[#FD5D07]">
+                {PROFILE_DATA.email}
+              </span>
             </a>
 
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-between gap-4 px-6 py-4 rounded-full bg-white border border-[#E8E6E1] hover:border-[#141414] text-[#141414] text-xs font-mono uppercase tracking-wider transition-all duration-200 hover:scale-[1.02]"
+            {/* Discovery Call */}
+            <button
+              type="button"
+              onClick={() => {
+                // Replace with your booking link later
+                console.log('Discovery call link');
+              }}
+              className="group py-7 text-left sm:pl-12"
             >
-              <span>Connect on LinkedIn</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
+              <div className="mb-7 text-[18px] text-white">
+                [ □ ]
+              </div>
 
-        {/* Bottom Colophon / Metadata Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono text-[#7A7873]">
-          <div>
-            <span>{PROFILE_DATA.name}</span>
-            <span className="mx-2">•</span>
-            <span>{PROFILE_DATA.city}, {PROFILE_DATA.country}</span>
-            <span className="mx-2">•</span>
-            <span>{PROFILE_DATA.timezone}</span>
+              <span className="mb-4 block font-mono text-[9px] uppercase tracking-[0.14em] text-white/45">
+                Book a discovery call
+              </span>
+
+              <span className="flex items-center justify-between text-[18px] tracking-[-0.02em] text-white">
+                <span>30 mins call</span>
+                <span className="text-white/60 transition-transform duration-300 group-hover:translate-x-2">
+                  →
+                </span>
+              </span>
+            </button>
           </div>
 
-          <div className="flex items-center gap-6">
-            {PROFILE_DATA.socials.map((s, idx) => (
-              <a
-                key={idx}
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#141414] transition-colors flex items-center gap-1"
-              >
-                <span>{s.name}</span>
-                <ArrowUpRight className="w-3 h-3 text-[#B5B2AA]" />
-              </a>
-            ))}
+          {/* Social / Utility Row */}
+          <div className="mt-12 flex flex-col gap-8 border-t border-white/15 pt-7 sm:mt-14 sm:flex-row sm:items-end sm:justify-between">
+
+            {/* Social Links */}
+            <div>
+              <span className="mb-4 block font-mono text-[9px] uppercase tracking-[0.14em] text-white/40">
+                Find me online
+              </span>
+
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { label: 'LinkedIn', href: '#' },
+                  { label: 'Behance', href: 'https://www.behance.net/gowthamk17' },
+                  { label: 'Instagram', href: '#' },
+                  { label: 'X', href: '#' },
+                ].map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target={social.href !== '#' ? '_blank' : undefined}
+                    rel={social.href !== '#' ? 'noreferrer' : undefined}
+                    className="border border-white/20 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.08em] text-white/70 transition-all duration-200 hover:border-[#FD5D07] hover:text-[#FD5D07]"
+                  >
+                    {social.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Back To Top */}
+            <button
+              type="button"
+              onClick={handleBackToTop}
+              className="group flex items-center gap-3 self-start font-mono text-[9px] uppercase tracking-[0.14em] text-white/55 transition-colors hover:text-white sm:self-auto"
+            >
+              <span>Back to top</span>
+
+              <span className="flex h-8 w-8 items-center justify-center border border-white/20 text-[14px] transition-all duration-200 group-hover:border-[#FD5D07] group-hover:text-[#FD5D07]">
+                ↑
+              </span>
+            </button>
           </div>
         </div>
       </section>
+
+      {/* Credits */}
+      <div className="flex min-h-[72px] flex-col items-center justify-center gap-2 px-6 py-6 text-center sm:flex-row sm:gap-1">
+        <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-[#77746F]">
+          Made with
+        </span>
+
+        <span className="text-[#FD5D07]">
+          ♥
+        </span>
+
+        <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-[#77746F]">
+          in Figma, built with React & TypeScript, crafted in Antigravity
+        </span>
+
+        <span className="hidden text-[#B8B5AF] sm:inline">•</span>
+
+        <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-[#77746F]">
+          © {new Date().getFullYear()} Gowtham K
+        </span>
+      </div>
     </footer>
   );
 };

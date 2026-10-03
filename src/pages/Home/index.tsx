@@ -1,9 +1,9 @@
 import React from 'react';
 import { PageTransition } from '../../components/motion/PageTransition';
-import { PROJECTS_DATA } from '../../data/projects';
 import { PLAYGROUND_DATA } from '../../data/playground';
 import { IdentityRail } from '../../components/home/IdentityRail';
 import { SpatialHero } from '../../components/home/SpatialHero';
+import { FeaturedProjects } from '../../components/home/FeaturedProjects';
 import { ArrowUpRight } from 'lucide-react';
 
 interface HomeProps {
@@ -11,7 +11,6 @@ interface HomeProps {
 }
 
 export const HomePage: React.FC<HomeProps> = ({ onNavigate }) => {
-  const featuredProjects = PROJECTS_DATA.filter((p) => p.featured);
   const featuredPlayground = PLAYGROUND_DATA.slice(0, 3);
 
   return (
@@ -29,159 +28,8 @@ export const HomePage: React.FC<HomeProps> = ({ onNavigate }) => {
 
       {/* SUBSEQUENT SECTIONS (Inside standard page container) */}
       <div className="container mx-auto sm:border-x border-[#E8E6E1] bg-[#FAF9F5]">
-        {/* Featured Works Section */}
-        <section id="featured-works" className="px-4 sm:px-8 lg:px-12 py-16 sm:py-24 border-b border-[#E8E6E1]">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-14">
-            <div>
-              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[#FD5D07]">
-                [ 01 • SELECTED CASE STUDIES ]
-              </span>
-              <h3 className="font-display text-4xl sm:text-6xl text-[#141414] mt-1 tracking-tight">
-                FEATURED PROJECTS
-              </h3>
-            </div>
-            <button
-              onClick={() => onNavigate('works')}
-              className="group flex items-center gap-1.5 text-xs font-mono font-medium uppercase tracking-wider text-[#141414] hover:text-[#FD5D07] transition-colors"
-            >
-              <span>View all projects ({PROJECTS_DATA.length})</span>
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
-          </div>
-
-          {/* Editorial Project Showcase List */}
-          <div className="space-y-12 sm:space-y-16">
-            {featuredProjects.map((project, idx) => (
-              <article
-                key={project.id}
-                onClick={() => onNavigate('case-study', project.id)}
-                className="group border border-[#E8E6E1] bg-white hover:border-[#141414]/40 rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-md"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-12">
-                  {/* Visual Canvas Area */}
-                  <div className="lg:col-span-7 bg-[#F3F1EC] p-6 sm:p-10 flex flex-col justify-between min-h-[300px] sm:min-h-[420px] relative overflow-hidden border-b lg:border-b-0 lg:border-r border-[#E8E6E1]">
-                    {/* Top Frame Tag */}
-                    <div className="flex items-center justify-between z-10">
-                      <span className="px-2.5 py-1 rounded bg-[#FAF9F5] border border-[#E8E6E1] font-mono text-[10px] text-[#4A4844] uppercase tracking-wider font-semibold">
-                        FRAME 0{idx + 1} • {project.tag}
-                      </span>
-                      <span className="font-mono text-xs text-[#7A7873]">
-                        {project.timeline}
-                      </span>
-                    </div>
-
-                    {/* Visual Centerpiece Mockup */}
-                    <div className="my-auto py-8 relative">
-                      <div className="w-full bg-[#FAF9F5] rounded-xl border border-[#E8E6E1] p-5 shadow-xs group-hover:scale-[1.01] transition-transform duration-300">
-                        <div className="flex items-center justify-between pb-3 border-b border-[#E8E6E1]">
-                          <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-[#FD5D07]/20 border border-[#FD5D07]" />
-                            <span className="text-xs font-mono font-bold text-[#141414]">
-                              {project.title}
-                            </span>
-                          </div>
-                          <span className="text-[10px] font-mono text-[#7A7873]">
-                            {project.role}
-                          </span>
-                        </div>
-
-                        <div className="mt-4 space-y-2.5">
-                          <div className="h-2 bg-[#E8E6E1] rounded w-3/4" />
-                          <div className="h-2 bg-[#F3F1EC] rounded w-full" />
-                          <div className="h-2 bg-[#F3F1EC] rounded w-5/6" />
-                        </div>
-
-                        {/* Mock Data Metrics Grid */}
-                        <div className="grid grid-cols-3 gap-2 mt-6 pt-4 border-t border-[#E8E6E1]/60">
-                          <div className="p-2 rounded bg-white border border-[#E8E6E1] text-[10px] font-mono">
-                            <span className="text-[#7A7873] block">DISCIPLINE</span>
-                            <span className="font-semibold text-[#141414]">Enterprise UX</span>
-                          </div>
-                          <div className="p-2 rounded bg-white border border-[#E8E6E1] text-[10px] font-mono">
-                            <span className="text-[#7A7873] block">PLATFORM</span>
-                            <span className="font-semibold text-[#141414]">Web / SaaS</span>
-                          </div>
-                          <div className="p-2 rounded bg-white border border-[#E8E6E1] text-[10px] font-mono">
-                            <span className="text-[#7A7873] block">TOOLING</span>
-                            <span className="font-semibold text-[#141414]">Figma Tokens</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Bottom Hover Affordance */}
-                    <div className="flex items-center justify-between pt-4 text-xs font-mono text-[#7A7873]">
-                      <span>INSPECT CASE STUDY</span>
-                      <span className="text-[#FD5D07] font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                        Read Architecture →
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Editorial Metadata & Narrative Column */}
-                  <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between">
-                    <div className="space-y-5">
-                      <div>
-                        <span className="font-mono text-xs text-[#FD5D07] font-semibold uppercase tracking-wider block">
-                          {project.tag}
-                        </span>
-                        <h4 className="font-display text-4xl sm:text-5xl text-[#141414] mt-1 tracking-tight">
-                          {project.title}
-                        </h4>
-                        <p className="text-sm font-medium text-[#4A4844] mt-2">
-                          {project.subtitle}
-                        </p>
-                      </div>
-
-                      <div className="space-y-4 pt-4 border-t border-[#E8E6E1]">
-                        <div>
-                          <span className="text-[10px] font-mono text-[#7A7873] uppercase tracking-wider block">
-                            THE CHALLENGE
-                          </span>
-                          <p className="text-xs text-[#4A4844] mt-1 leading-relaxed">
-                            {project.problem}
-                          </p>
-                        </div>
-
-                        <div>
-                          <span className="text-[10px] font-mono text-[#7A7873] uppercase tracking-wider block">
-                            SYSTEMIC OUTCOME
-                          </span>
-                          <p className="text-xs text-[#141414] mt-1 leading-relaxed font-medium">
-                            {project.outcome}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-1.5 pt-2">
-                        {project.tags.map((t, tIdx) => (
-                          <span
-                            key={tIdx}
-                            className="px-2.5 py-1 rounded bg-[#F3F1EC] text-[11px] font-mono text-[#4A4844]"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Action Link */}
-                    <div className="pt-8 border-t border-[#E8E6E1] flex items-center justify-between">
-                      <span className="text-xs font-mono text-[#7A7873]">
-                        Role: {project.role}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-[#141414] group-hover:text-[#FD5D07] transition-colors">
-                        View Case Study
-                        <ArrowUpRight className="w-4 h-4" />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+        {/* Featured Projects Interactive Editorial Gallery */}
+        <FeaturedProjects onNavigate={onNavigate} />
 
         {/* Playground Highlights Preview Section */}
         <section className="px-4 sm:px-8 lg:px-12 py-16 sm:py-24">
